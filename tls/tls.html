@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Issues - Jianxun&#x27;s Blog</title>
+        <title>TLS - Jianxun&#x27;s Blog</title>
 
 
         <!-- Custom HTML head -->
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../Introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="../personalized-notes/personalized-notes.html"><strong aria-hidden="true">1.</strong> Personalized Notes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../personalized-notes/fourier-transform/fourier-transform.html"><strong aria-hidden="true">1.1.</strong> Fourier Transform</a></li><li class="chapter-item expanded "><a href="../personalized-notes/stat/statistics.html"><strong aria-hidden="true">1.2.</strong> Statistics</a></li></ol></li><li class="chapter-item expanded "><a href="../http-proxy/http-proxy.html"><strong aria-hidden="true">2.</strong> HTTP Proxy</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../http-proxy/principles.html"><strong aria-hidden="true">2.1.</strong> Principles</a></li><li class="chapter-item expanded "><a href="../http-proxy/implementation.html"><strong aria-hidden="true">2.2.</strong> Implmentation</a></li><li class="chapter-item expanded "><a href="../http-proxy/issues.html" class="active"><strong aria-hidden="true">2.3.</strong> Issues</a></li></ol></li><li class="chapter-item expanded "><a href="../wifi-controlled-robot/wifi-controlled-robot.html"><strong aria-hidden="true">3.</strong> WiFi Controlled Robot</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wifi-controlled-robot/engineering-log.html"><strong aria-hidden="true">3.1.</strong> Engineering Log</a></li><li class="chapter-item expanded "><a href="../wifi-controlled-robot/issues.html"><strong aria-hidden="true">3.2.</strong> Issues</a></li></ol></li><li class="chapter-item expanded "><a href="../tls/tls.html"><strong aria-hidden="true">4.</strong> TLS</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tls/stage1.html"><strong aria-hidden="true">4.1.</strong> Stage 1</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../Introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="../personalized-notes/personalized-notes.html"><strong aria-hidden="true">1.</strong> Personalized Notes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../personalized-notes/fourier-transform/fourier-transform.html"><strong aria-hidden="true">1.1.</strong> Fourier Transform</a></li><li class="chapter-item expanded "><a href="../personalized-notes/stat/statistics.html"><strong aria-hidden="true">1.2.</strong> Statistics</a></li></ol></li><li class="chapter-item expanded "><a href="../http-proxy/http-proxy.html"><strong aria-hidden="true">2.</strong> HTTP Proxy</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../http-proxy/principles.html"><strong aria-hidden="true">2.1.</strong> Principles</a></li><li class="chapter-item expanded "><a href="../http-proxy/implementation.html"><strong aria-hidden="true">2.2.</strong> Implmentation</a></li><li class="chapter-item expanded "><a href="../http-proxy/issues.html"><strong aria-hidden="true">2.3.</strong> Issues</a></li></ol></li><li class="chapter-item expanded "><a href="../wifi-controlled-robot/wifi-controlled-robot.html"><strong aria-hidden="true">3.</strong> WiFi Controlled Robot</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wifi-controlled-robot/engineering-log.html"><strong aria-hidden="true">3.1.</strong> Engineering Log</a></li><li class="chapter-item expanded "><a href="../wifi-controlled-robot/issues.html"><strong aria-hidden="true">3.2.</strong> Issues</a></li></ol></li><li class="chapter-item expanded "><a href="../tls/tls.html" class="active"><strong aria-hidden="true">4.</strong> TLS</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tls/stage1.html"><strong aria-hidden="true">4.1.</strong> Stage 1</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -174,42 +174,20 @@
                 <div id="content" class="content">
                     <main>
                         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-<h2 id="table-of-contents"><a class="header" href="#table-of-contents">Table of Contents</a></h2>
+<h1 id="tls"><a class="header" href="#tls">TLS</a></h1>
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <hr />
-<ol>
-<li><a href="#documentation">Documentation</a></li>
-<li><a href="#code">Code</a>
-<ol>
-<li><a href="#style">Style</a></li>
-<li><a href="#robustness">Robustness</a></li>
-</ol>
-</li>
-<li><a href="#testing">Testing</a></li>
-</ol>
-<h2 id="documentation"><a class="header" href="#documentation">Documentation</a></h2>
-<hr />
-<p>There are no function documentations.</p>
-<h2 id="code"><a class="header" href="#code">Code</a></h2>
-<hr />
-<h3 id="style"><a class="header" href="#style">Style</a></h3>
-<p>The code is not properly formated and documented for readibility. It is filled with long functions with heavily nested if-else statements, and the control flow is not clear. </p>
-<p>The messages printed to standard inputs and error are not properly formated. In addition, the error messages does not contain enough information and no stack trace of any sort is presented. </p>
-<p>Few comments are presented.</p>
-<h3 id="robustness"><a class="header" href="#robustness">Robustness</a></h3>
-<p>There is neither error handling nor bound checking for indexing. An array is statically allocated to store <code>pthread_t</code>s created, but the index used to record the number of threads created grows with bound checking. It would definitely cause an overflow when the total amount of clients exceeds the limit. There is also no maintaining functionailty for the array to continuously check the status of the threads and removed them from array when the thread is joined. This made the problem worse. However, this is simple to implement, and this project is meant for learning, so there won't be a huge amount of requests. </p>
-<h2 id="testing"><a class="header" href="#testing">Testing</a></h2>
-<hr />
-<p>There are neither function tests nor unit tests. All tests performed were done by executing the compiled program and sending requests with the Google Chrome.</p>
+<p>This implementation of the TLS protocol is meant for learning purposes. </p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../http-proxy/implementation.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../wifi-controlled-robot/issues.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../wifi-controlled-robot/wifi-controlled-robot.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../tls/stage1.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -219,11 +197,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../http-proxy/implementation.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../wifi-controlled-robot/issues.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../wifi-controlled-robot/wifi-controlled-robot.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../tls/stage1.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

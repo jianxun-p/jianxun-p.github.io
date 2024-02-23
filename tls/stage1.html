@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Issues - Jianxun&#x27;s Blog</title>
+        <title>Stage 1 - Jianxun&#x27;s Blog</title>
 
 
         <!-- Custom HTML head -->
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../Introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="../personalized-notes/personalized-notes.html"><strong aria-hidden="true">1.</strong> Personalized Notes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../personalized-notes/fourier-transform/fourier-transform.html"><strong aria-hidden="true">1.1.</strong> Fourier Transform</a></li><li class="chapter-item expanded "><a href="../personalized-notes/stat/statistics.html"><strong aria-hidden="true">1.2.</strong> Statistics</a></li></ol></li><li class="chapter-item expanded "><a href="../http-proxy/http-proxy.html"><strong aria-hidden="true">2.</strong> HTTP Proxy</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../http-proxy/principles.html"><strong aria-hidden="true">2.1.</strong> Principles</a></li><li class="chapter-item expanded "><a href="../http-proxy/implementation.html"><strong aria-hidden="true">2.2.</strong> Implmentation</a></li><li class="chapter-item expanded "><a href="../http-proxy/issues.html" class="active"><strong aria-hidden="true">2.3.</strong> Issues</a></li></ol></li><li class="chapter-item expanded "><a href="../wifi-controlled-robot/wifi-controlled-robot.html"><strong aria-hidden="true">3.</strong> WiFi Controlled Robot</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wifi-controlled-robot/engineering-log.html"><strong aria-hidden="true">3.1.</strong> Engineering Log</a></li><li class="chapter-item expanded "><a href="../wifi-controlled-robot/issues.html"><strong aria-hidden="true">3.2.</strong> Issues</a></li></ol></li><li class="chapter-item expanded "><a href="../tls/tls.html"><strong aria-hidden="true">4.</strong> TLS</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tls/stage1.html"><strong aria-hidden="true">4.1.</strong> Stage 1</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../Introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="../personalized-notes/personalized-notes.html"><strong aria-hidden="true">1.</strong> Personalized Notes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../personalized-notes/fourier-transform/fourier-transform.html"><strong aria-hidden="true">1.1.</strong> Fourier Transform</a></li><li class="chapter-item expanded "><a href="../personalized-notes/stat/statistics.html"><strong aria-hidden="true">1.2.</strong> Statistics</a></li></ol></li><li class="chapter-item expanded "><a href="../http-proxy/http-proxy.html"><strong aria-hidden="true">2.</strong> HTTP Proxy</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../http-proxy/principles.html"><strong aria-hidden="true">2.1.</strong> Principles</a></li><li class="chapter-item expanded "><a href="../http-proxy/implementation.html"><strong aria-hidden="true">2.2.</strong> Implmentation</a></li><li class="chapter-item expanded "><a href="../http-proxy/issues.html"><strong aria-hidden="true">2.3.</strong> Issues</a></li></ol></li><li class="chapter-item expanded "><a href="../wifi-controlled-robot/wifi-controlled-robot.html"><strong aria-hidden="true">3.</strong> WiFi Controlled Robot</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wifi-controlled-robot/engineering-log.html"><strong aria-hidden="true">3.1.</strong> Engineering Log</a></li><li class="chapter-item expanded "><a href="../wifi-controlled-robot/issues.html"><strong aria-hidden="true">3.2.</strong> Issues</a></li></ol></li><li class="chapter-item expanded "><a href="../tls/tls.html"><strong aria-hidden="true">4.</strong> TLS</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tls/stage1.html" class="active"><strong aria-hidden="true">4.1.</strong> Stage 1</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -174,44 +174,64 @@
                 <div id="content" class="content">
                     <main>
                         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="stage-1"><a class="header" href="#stage-1">Stage 1</a></h1>
 <h2 id="table-of-contents"><a class="header" href="#table-of-contents">Table of Contents</a></h2>
 <hr />
-<ol>
-<li><a href="#documentation">Documentation</a></li>
-<li><a href="#code">Code</a>
-<ol>
-<li><a href="#style">Style</a></li>
-<li><a href="#robustness">Robustness</a></li>
-</ol>
-</li>
-<li><a href="#testing">Testing</a></li>
-</ol>
-<h2 id="documentation"><a class="header" href="#documentation">Documentation</a></h2>
+<ul>
+<li><a href="#brief">Brief</a></li>
+<li><a href="#tls-version-12">TLS version 1.2</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#issues">Issues</a></li>
+<li><a href="#tls-version-13">TLS version 1.3</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+<h2 id="brief"><a class="header" href="#brief">Brief</a></h2>
 <hr />
-<p>There are no function documentations.</p>
-<h2 id="code"><a class="header" href="#code">Code</a></h2>
+<p>At stage 1, this project implemented the server end of TLS1.2 with C++20. However, the build up of shit code made it nearly impossible to continue after successfully establishing the first TLS connection and deciphering the very first application data. As a result, the project was re-started.</p>
+<h2 id="tls-version-12"><a class="header" href="#tls-version-12">TLS version 1.2</a></h2>
 <hr />
-<h3 id="style"><a class="header" href="#style">Style</a></h3>
-<p>The code is not properly formated and documented for readibility. It is filled with long functions with heavily nested if-else statements, and the control flow is not clear. </p>
-<p>The messages printed to standard inputs and error are not properly formated. In addition, the error messages does not contain enough information and no stack trace of any sort is presented. </p>
-<p>Few comments are presented.</p>
-<h3 id="robustness"><a class="header" href="#robustness">Robustness</a></h3>
-<p>There is neither error handling nor bound checking for indexing. An array is statically allocated to store <code>pthread_t</code>s created, but the index used to record the number of threads created grows with bound checking. It would definitely cause an overflow when the total amount of clients exceeds the limit. There is also no maintaining functionailty for the array to continuously check the status of the threads and removed them from array when the thread is joined. This made the problem worse. However, this is simple to implement, and this project is meant for learning, so there won't be a huge amount of requests. </p>
-<h2 id="testing"><a class="header" href="#testing">Testing</a></h2>
+<p>In the inital <code>Client Hello</code> handshake message, the client will specifiy all supported cipher suites and public crytographic parameters, it also includes a 32 bytes of random data and a sequence of bytes for session ID. The random bytes would be used later in shared-key derivation. </p>
+<p>The server will respond with a <code>Server Hello</code> message, it also contains 32 random bytes and session ID, but it would choose one cipher suite and the required public crytographic parameters. The server would also send a <code>Certificate</code> signed by a CA to the client. The certificate contains a public key for the clients to encrypt a pre-master secret. Only the server is capable of decrypting the pre-master secret due to the properties of asymetric encryption, and the certificate is signed with the private key of the CA, which nobody acknowledges, so by using the public key of the CA, held by the operating systems, it is sufficient to assure that the public key contained inside the certificate has not been modified by any attackers in the network. On top of that, since only the server has the private key, nobody else except the client and the server knows the pre-master secret. </p>
+<p>The pre-master secret itself is not long enough to be directly used as session keys, and to avoid bad implementation of TLS that use the same pre-master secret repeatedly, the pre-master secret with be extended to obtain the master secret using the random bytes sent. If the extended-master secret extension was specified in the client hello and server hello messages, all handshake message would also be included to add an additional level of security. </p>
+<p>After key negotiation, both the server and client will send a <code>Change Cipher Spec</code> handshake message to indicate that all messages beyond would be encrypted with the session key. At the end of the handshake, it is required to send a hash of all messages encrypted with the new session key to ensure that the handshake messages are not modified by attackers and to ensure that there are no errors in key calculation of both sides. </p>
+<h2 id="features"><a class="header" href="#features">Features</a></h2>
 <hr />
-<p>There are neither function tests nor unit tests. All tests performed were done by executing the compiled program and sending requests with the Google Chrome.</p>
+<p>There is limited amount of features and support, and the cipher suites supported are not the most secure; in fact, it only supports RSA key exchange and AES in GCM mode for stream cipher using SHA2 as the hashing algorithm. </p>
+<h2 id="learn"><a class="header" href="#learn">Learn</a></h2>
+<hr />
+<ul>
+<li>wireshark</li>
+<li>openssl</li>
+</ul>
+<h2 id="reflection"><a class="header" href="#reflection">Reflection</a></h2>
+<hr />
+<h2 id="issues"><a class="header" href="#issues">Issues</a></h2>
+<hr />
+<p>The structure and style of code resulted in poor readability. The comprimises made during development that were supposed to be fixed have never been revisted. The extensive use of stack memory, pointers and casting for fast implementation made it difficult to follow. This bad habit resulted in extremely unsafe code for deployment; in fact, segmentation fault and stack buffer overflow occured several times. The documentation can be improved by specifying the side effects of the code. The structure of the implmentation is done well. Few functions and classes are responsible of long heavy tasks. Despite the improvement of documentation from previous projects, the style cannot keep up with the growing size of this project. </p>
+<h2 id="references"><a class="header" href="#references">References</a></h2>
+<hr />
+<ul>
+<li><a href="https://www.rfc-editor.org/rfc/rfc5246">RFC5246: The Transport Layer Security (TLS) Protocol Version 1.2</a></li>
+<li><a href="https://sha256algorithm.com/">SHA256 Algorithm</a></li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc2104">RFC2104: HMAC: Keyed-Hashing for Message Authentication</a></li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc5280">RFC5280: Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile</a></li>
+<li><a href="https://www.rfc-editor.org/rfc/rfc5116">RFC5116: An Interface and Algorithms for Authenticated Encryption</a></li>
+<li><a href="https://www.rfc-editor.org/rfc/rfc5288">RFC5288: AES Galois Counter Mode (GCM) Cipher Suites for TLS</a></li>
+<li><a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.197-upd1.pdf">FIPS197: Advanced Encryption Standard (AES)</a></li>
+<li><a href="https://nvlpubs.nist.gov/nistpubs/legacy/sp/nistspecialpublication800-38d.pdf">NIST: Galois/Counter Mode (GCM) and GMAC</a></li>
+<li><a href="https://csrc.nist.rip/groups/ST/toolkit/BCM/documents/proposedmodes/gcm/gcm-spec.pdf">The Galois/Counter Mode of Operation (GCM)</a></li>
+<li><a href="https://nvlpubs.nist.gov/nistpubs/legacy/sp/nistspecialpublication800-38a.pdf">NIST: Methods and Techniques</a></li>
+<li><a href="https://csrc.nist.gov/CSRC/media/Projects/Cryptographic-Standards-and-Guidelines/documents/examples/AES_GCM.pdf">GCM Examples</a></li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../http-proxy/implementation.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../tls/tls.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../wifi-controlled-robot/wifi-controlled-robot.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -219,13 +239,10 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../http-proxy/implementation.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../tls/tls.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../wifi-controlled-robot/wifi-controlled-robot.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
             </nav>
 
         </div>
