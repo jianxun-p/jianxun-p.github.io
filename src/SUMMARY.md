@@ -3,6 +3,7 @@
 [Introduction](Introduction.md)
 - [Personalized Notes](personalized-notes/personalized-notes.md)
     - [Fourier Transform](personalized-notes/fourier-transform/fourier-transform.md)
+    - [Statistics](personalized-notes/stat/statistics.md)
 - [HTTP Proxy](http-proxy/http-proxy.md)
     - [Principles](http-proxy/principles.md)
     - [Implmentation](http-proxy/implementation.md)
