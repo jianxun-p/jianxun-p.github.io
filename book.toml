@@ -1,0 +1,13 @@
+[book]
+authors = ["jianxun-p <s4pan@uwaterloo.ca>"]
+language = "en"
+title = "Jianxun's Blog"
+description = "Personal blog."
+src = "src"
+
+[build]
+build-dir = "out"
+create-missing = false
+
+[preprocessor.katex]
+after = ["links"]
