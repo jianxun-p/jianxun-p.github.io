@@ -10,7 +10,7 @@
 
 ## Documentation
 ---
-Many of the videos and images of the project were lost or contained private information that cannot be documented in the engineering log. 
+Many of the videos and images of the project were lost and cannot be documented in the engineering log. 
 
 
 
