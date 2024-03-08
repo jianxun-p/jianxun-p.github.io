@@ -3,7 +3,8 @@
 
 ## Brief
 ---
-This is a personal notes on the fourier series, the fourier transform and the laplace transform. The notes are written in LaTeX with the intension to learn to use LaTeX.
+This is a personal notes on the fourier series, the fourier transform and the laplace transform. The notes are written in LaTeX with the intension to learn to use LaTeX. The document's formation began on August 19, 2022. 
+
 
 ## Compiled Notes
 ---
@@ -11,9 +12,13 @@ This is a personal notes on the fourier series, the fourier transform and the la
 
 ## Source
 ---
-- [notes.tex](notes.tex)
-- img
-    - [fourier_series_single_side_spectrum_example1.jpeg](img/fourier_series_single_side_spectrum_example1.jpeg)
-    - [fourier_series_single_side_spectrum_example2.jpeg](img/fourier_series_single_side_spectrum_example2.jpeg)
-    - [fourier_series_two_side_spectrum_example1.jpeg](img/fourier_series_two_side_spectrum_example1.jpeg)
-    - [fourier_series_two_side_spectrum_example2.jpeg](img/fourier_series_two_side_spectrum_example2.jpeg)
+- [main.tex](main.tex)
+- [1-introduction.tex](1-introduction.tex)
+- [2-fourier_series.tex](2-fourier_series.tex)
+- [3-fourier_transform.tex](3-fourier_transform.tex)
+- [4-dirac-delta-function.tex](4-dirac-delta-function.tex)
+- [5-discrete-time-fourier-transform.tex](5-discrete-time-fourier-transform.tex)
+- [6-discrete-fourier-transform.tex](6-discrete-fourier-transform.tex)
+- [7-laplace-transform.tex](7-laplace-transform.tex)
+- [8-properties-of-laplace-transform.tex](8-properties-of-laplace-transform.tex)
+- [9-gabor-transform.tex](9-gabor-transform.tex)
