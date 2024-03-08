@@ -1,0 +1,75 @@
+\section{Fourier Transform (Fourier Integral)}
+For continuous periodic functions, we had showed the transform by using the Fourier series, 
+we are able to describe the continuous periodic function using amplitude and phase shift instead of time. 
+Not only that, the process of conversion was also showed. 
+
+Nevertheless, the Fourier series can only deal with periodic functions and 
+it cannot pick out amplitude and phase shift information of continuous frequencies. 
+This is the problem that Fourier transform solves.
+The Fourier integral solves both problems by setting the cycle to $-\infty$ to $\infty$, 
+and expand the definition of $n$ to the real number set. 
+The entire function becomes one cycle, resulting in the base frequency, 
+$\omega_0$ to approach $0$. Due to the fact that $\frac{1}{T}=\frac{\omega_0}{2\pi}$, 
+and $\omega_0$ equals to the difference between the two nearby frequency($n\omega_0$ and $(n+1)\omega_0$) 
+in the Fourier series. 
+
+The equation for the Fourier series
+$$
+    f(t) 
+    = \sum_{n=-\infty}^{\infty} \left[ e^{\mathrm{i}n\omega_0t} \cdot
+    \frac{\omega_0}{2\pi}\int^{T} f(t)e^{-\mathrm{i}n\omega_0t} \mathrm{d}t\right]
+$$
+becomes:
+$$\begin{aligned}
+    f(t) 
+    &= \lim_{\omega_0 \to 0} \sum_{n=-\infty}^{\infty} \left[ e^{\mathrm{i}n\omega_0 t} \cdot
+    \frac{\omega_0}{2\pi}\int_{-\infty}^{\infty} f(t) e^{-\mathrm{i}n\omega_0 t} \mathrm{d}t \right]   \\
+    &= \int_{-\infty}^{\infty}  \left[ e^{\mathrm{i}\omega t} \cdot
+    \frac{\mathrm{d}\omega}{2\pi}\int_{-\infty}^{\infty} f(t) e^{-\mathrm{i}\omega t} \mathrm{d}t \right] 
+\end{aligned}$$
+
+Re-write the above equation properly:
+
+\begin{equation}
+    f(t) 
+    = \frac{1}{2\pi} \int_{-\infty}^{\infty} \left[ 
+    \int_{-\infty}^{\infty} f(t) e^{-\mathrm{i}\omega t} \mathrm{d}t \right] e^{\mathrm{i}\omega t} \mathrm{d}\omega
+    \label{equ:fully_expanded_fourier_integral}
+\end{equation}
+
+\indent Since the frequency became continuous, so the coefficients (what used to be $F_n$) 
+became a function of frequency, or:
+
+\begin{equation}
+    F(\omega) = \int_{-\infty}^{\infty} f(t) e^{-\mathrm{i}\omega t} \mathrm{d}t
+    \label{equ:forward_fourier_integral}
+\end{equation}
+
+\indent We get the equation for the inverse Fourier transform by subbing 
+{\eqref{equ:forward_fourier_integral}} into {\eqref{equ:fully_expanded_fourier_integral}}:
+
+\begin{equation}
+    f(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} F(\omega) e^{\mathrm{i}\omega t} \mathrm{d}\omega
+    \label{equ:inverse_fourier_integral}
+\end{equation}
+
+\indent The above equations transform between function of time and function of frequency. 
+Equation {\eqref{equ:forward_fourier_integral}} is called the Forward Fourier Transform. 
+It transforms the function about time into the function about frequency. On the other hand, 
+equation {\eqref{equ:inverse_fourier_integral}} does the opposite. It is called the Reverse Fourier Transform, 
+and it transforms the function about frequency into the function about time. 
+
+\indent Unlike the Fourier Seires, the coefficient $\frac{1}{2\pi}$ which corresponds 
+to $\frac{1}{T}$ in the Fourier Series had become a part of the {\eqref{equ:inverse_fourier_integral}} instead of 
+{\eqref{equ:forward_fourier_integral}}. 
+This difference does not really matter other than scaling the Fourier coefficients by a constant, 
+since we don't really care about the unit of the Fourier coefficients. 
+But it is still important to specify the definition of the equations to avoid any mistakes. 
+We would stick with the ones that are more commonly used.
+
+\indent The process of transformation can be written down as 
+$f(t) \stackrel{\mathcal{F}}{\longleftrightarrow} F(\omega)$.
+
+\indent The Continuous Time Fourier Transform allows the transformation of continuous non-periodic functions to be done. 
+With the help of the Fourier Series, picking out frequency information of any continuous functions becomes possible.
+
