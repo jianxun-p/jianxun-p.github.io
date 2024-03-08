@@ -1,0 +1,116 @@
+\section{Properties of Laplace Transform}
+Since the Fourier transform is a special case of the Laplace transform where $a=0$, 
+the properties of the Laplace transform can be found on the Fourier transform.  
+
+\subsection{Linearity}
+The first property is that the Laplace Transform is linear, which means that if $a$ and $b$ are constants: 
+\begin{equation}
+    \mathcal{L}\{af(t)+bg(t)\} = a\mathcal{L}\{f(t)\} + b\mathcal{L}\{g(t)\}
+\end{equation}
+The property of linearity also holds for the inverse Laplace transform. 
+\begin{equation}
+    \mathcal{L}^{-1}\{aF(s)+bG(s)\} = a\mathcal{L}^{-1}\{F(s)\} + b\mathcal{L}^{-1}\{G(s)\}
+\end{equation}
+This holds because integration is a linear process. 
+ 
+
+
+\subsection{Laplace Transform of Derivatives}
+The property about differentiation is that
+
+\begin{align*}
+    \mathcal{L}\{f^{(n)}(t)\} 
+    &=  \int_{0}^{\infty} f^{(n)}(t) e^{-st} \mathrm{d}t     \\
+    &=  \left[f^{(n-1)}(t) e^{-st}\right]_{t=0}^{t=\infty}
+            +   s \int_{0}^{\infty} f^{(n-1)}(t) e^{-st} \mathrm{d}t
+\end{align*}
+Since $e^{st}$ grows faster than any orders of derivative of $f(t)$, then: 
+$$\lim_{t\to\infty}f^{(n-1)}(t) e^{-st} = 0$$
+hence: 
+\begin{align*}
+    \mathcal{L}\{f^{(n)}(t)\}   =&  f^{(n-1)}(0)
+            +   s \mathcal{L} \{f^{(n-1)}(t)\}  \\
+    =&  f^{(n-1)}(0)
+            +   s f^{(n-2)}(0)
+            +   s^{2} \mathcal{L} \{f^{(n-2)}(t)\}     \\
+    =&  f^{(n-1)}(0)
+            +   s f^{(n-2)}(0)
+            +   s^{2} f^{(n-3)}(0)      \\
+            &+   \dots
+            +   s^{n-1} f(0)
+            +   s^{n} \mathcal{L} \{ f(t) \}
+\end{align*}
+
+Hence, we can generalized the Laplace transform of derivatives:
+
+\begin{equation}
+    \mathcal{L}\{f^{(n)}(t)\}
+    =  s^{n} \mathcal{L} \{ f(t) \} + 
+        \sum_{m=1}^{n} s^{m-1} f^{(n-m)}(0)
+    \label{equ:laplace_transform_of_derivatives}
+\end{equation}
+
+All terms other than $s^{n}\mathcal{L} \{ f(t) \}$ does not contain the variable $t$, 
+we have successfully removed all derivatives in respect of $t$ from the expression. 
+This is useful in the solutions of differential equations.
+
+With the same process, we can obtain the inverse Laplace transform of derivatives:
+
+\begin{align*}
+    \mathcal{L}^{-1}\{F^{(n)}(s)\} 
+    =&  \frac{1}{2\pi\mathrm{i}} \int_{a-\infty}^{a+\infty} F^{(n)}(s) e^{st} \mathrm{d}s     \\
+    =&  \frac{1}{2\pi\mathrm{i}} \left[F^{(n-1)}(s) e^{st}\right]_{a-\infty}^{s=a+\infty}
+            -   \frac{t}{2\pi\mathrm{i}} \int_{a-\infty}^{a+\infty} F^{(n-1)}(s) e^{st} \mathrm{d}s  \\
+    =&  \frac{1}{2\pi\mathrm{i}} \left[F^{(n-1)}(s) e^{st}\right]_{a-\infty}^{s=a+\infty}
+            -   t \mathcal{L}^{-1}\{ F^{(n-1)}(s) \}    \\
+    =&  \frac{1}{2\pi\mathrm{i}} \left[F^{(n-1)}(s) e^{st}\right]_{a-\infty}^{s=a+\infty}
+            -   \frac{t}{2\pi\mathrm{i}} \left[F^{(n-2)}(s) e^{st}\right]_{a-\infty}^{s=a+\infty}       \\
+            &+   \frac{t^{2}}{2\pi\mathrm{i}} \left[F^{(n-3)}(s) e^{st}\right]_{a-\infty}^{s=a+\infty}
+            +   \dots
+            +   \frac{(-t)^{n-1}}{2\pi\mathrm{i}} \left[F(s) e^{st}\right]_{a-\infty}^{s=a+\infty}      \\
+            &+   (-t)^{n} \mathcal{L}^{-1} \{ F(s) \}
+\end{align*}
+
+The inverse Laplace transform of derivatives can be generalized as the following: 
+
+\begin{equation}
+    \mathcal{L}^{-1}\{F^{(n)}(s)\}
+    =  (-t)^{n} \mathcal{L}^{-1} \{ F(s) \} + 
+        \sum_{m=1}^{n} \frac{(-t)^{m-1}}{2\pi\mathrm{i}} \left[F^{(n-m)}(s) e^{st} \right]_{a-\infty}^{s=a+\infty}
+    \label{equ:inverse_laplace_transform_of_derivatives}
+\end{equation}
+ 
+
+
+\subsection{The Convolution Theorem}
+The convolution of two function $f(t)$ and $g(t)$ is written as $(f*g)(t)$, and convolution is defined as: 
+\begin{equation}
+    (f*g)(t) = \int_{-\infty}^{\infty} f(\tau)g(t-\tau) \mathrm{d}\tau
+\end{equation}
+This is also called the convolution integral. 
+By substituting $u=t-\tau$, the commutativity property of convolution. 
+\begin{equation}
+    f*g = g*f
+\end{equation}
+If the function that $f(t)$ is convolution with is the Delta Distribution $\delta(t)$, then: 
+\begin{equation}
+    f*\delta = f
+\end{equation}
+
+The convolution are very connected with the Laplace transform. Let $t=x+v$: 
+\begin{align*}
+    F(s)G(s) 
+    =& \left[\int_{0}^{\infty} f(x)e^{-sx} \mathrm{d}x\right]\left[\int_{0}^{\infty} g(v)e^{-sv} \mathrm{d}v\right] \\
+    =& \int_{0}^{\infty} \int_{v}^{\infty}e^{-st} f(t-v)g(v) \mathrm{d}t \mathrm{d}v \\
+    =& \int_{0}^{\infty} e^{-st} \int_{0}^{t} f(t-v)g(v) \mathrm{d}v \mathrm{d}t \\
+    F(s)G(s) 
+    =& \mathcal{L}\{ (f*g)(t) \}
+\end{align*}
+Therefore, 
+    $$\mathcal{L}^{-1}\{ F(s)G(s) \} = (f*g)(t) $$
+
+A similar conclusion can be drawn with the same process: 
+    $$F(s)*G(s) = \mathcal{L}\{ f(t) \cdot g(t) \}$$
+    $$\mathcal{L}^{-1}\{ F(s)*G(s) \} = f(t) \cdot g(t)$$
+
+

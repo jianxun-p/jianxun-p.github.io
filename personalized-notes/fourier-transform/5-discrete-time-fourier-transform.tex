@@ -1,0 +1,30 @@
+\section{Discrete Time Fourier Transform}
+There are times when we have finite amount of points on a function, 
+and we wanted to curve fit the data points with cosine and sine functions.
+This is the problem that the Discrete Time Fourier Transform (DTFT) and the Discrete Fourier Transform (DFT) solved. 
+The difference between them is that DTFT outputs a continuous function of frequency while DFT outputs a discrete one. 
+
+Due to that time is discrete in DTFT, we have to replace the integral with summation: 
+\begin{equation}
+    F(\omega) = \sum_{t=-\infty}^{+\infty} f[t] e^{-\mathrm{i}\omega t} 
+    \label{equ:DTFT}
+\end{equation}
+
+From \eqref{equ:DTFT}, we can tell that $F(\omega)$ is a function of sum of cosine and sine functions. 
+Which means that $F(\omega)$ is a periodic function. 
+Compare the fourier series with the DTFT, it again reveals the symmetrical property of the Fourier transform. 
+
+On the other hand, frequency is continuous, which we could use the same equation for 
+the inverse transformation as the Fourier transform derived for the continuous Fourier transform, 
+only with a limited amount of changes. 
+Time is discrete, which means that we have to limit/round the input of the function $f(t)$ to integers. 
+To do so, simply replace $f(t)$ with $f[t]$ would be fine. 
+On top of that, due to that $F(\omega)$ is a periodic function, 
+setting any interval of $2\pi$ as the limits of the integral does exactly what we wanted it to do 
+(it diverges if we take the integral between the interval $(-\infty,\infty)$). 
+We can get the equation for 
+the inverse discrete time Fourier transform (IDTFT):
+\begin{equation}
+    f[t] = \frac{1}{2\pi} \int_{2\pi} F(\omega) e^{\mathrm{i}\omega t} \mathrm{d}\omega
+    \label{equ:IDTFT}
+\end{equation}

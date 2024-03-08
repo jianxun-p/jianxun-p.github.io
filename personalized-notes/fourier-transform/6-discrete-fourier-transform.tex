@@ -1,0 +1,145 @@
+\section{The Discrete Fourier Transform (DFT)}
+Similar to the Fourier Series, the frequency is discrete. 
+However, the time is also discrete for DFT. 
+These two properties give an opportunity for the application of fourier transform on computers. 
+Computers can only record state at any moment of time discretely and repeatedly within a time period, 
+this process is called sampling. In addition, it cannot record frequency as a continuous function. 
+Instead, they treat the functions as finite amount of discrete points which can be easily stored and processed.
+
+Since the frequency for the Fourier series is also discrete, 
+we can use the same equation of accumulating all Fourier terms for DFT, 
+which is also the inverse discrete Fourier transform (IDFT):
+
+\begin{equation}
+    f[j] = \frac{1}{n} \sum_{k=0}^{n-1} F[k] e^{\frac{\mathrm{i}2\pi jk}{n}} 
+    \label{equ:IDFT}
+\end{equation}
+where $n$ is the number of data points, and $\omega$ becomes $\frac{2k\pi}{n}$. 
+
+
+However, we have to get a equation for the forward transformation. 
+Since time is discrete for DFT, 
+we can simply replace integral in the continuous Fourier transform into a summation:
+
+\begin{equation}
+    F[k] = \sum_{j=0}^{n-1} f[j] e^{-\frac{\mathrm{i}2\pi jk}{n}} 
+    \label{equ:DFT}
+\end{equation}
+
+It maybe obvious that the negative frequencies do not appear in \eqref{equ:DFT}, 
+which was a result of the introduction of imaginary numbers in the Fourier series. 
+The negative frequencies were used to cancel out the imaginary parts of the results. 
+Keep in mind that $e^{\mathrm{i}(2\pi+\theta)} = e^{\mathrm{i}\theta}$ 
+because cosine and sine functions have a period of $2\pi$, we get:
+
+$$\begin{aligned}
+    F[n-k] 
+    &= \sum_{j=0}^{n-1} f[j] e^{-\frac{2j(n-k)\pi\mathrm{i}}{n}} \\ 
+    &= \sum_{j=0}^{n-1} f[j] e^{-\mathrm{i}j(2\pi - \frac{2k\pi}{n})} \\ 
+    &= \sum_{j=0}^{n-1} f[j] e^{\frac{\mathrm{i}2\pi jk} {n}}   \\
+    &= F[-k] 
+\end{aligned}$$
+
+The above steps shows that frequencies from $\frac{n}{2}$ to $n$ takes the job of negative frequencies. 
+All the imaginary numbers cancel out at the end if the inputs were all real numbers. 
+
+We have a vector of collected data, $f_n$, and a vector of Fourier coefficients $F_n$. 
+The collected multiplied by the Discrete Fourier Transformation matrix would give the Fourier coefficients. 
+Rewrite the above equation for the forward transform gives:
+\begin{equation}
+    \begin{bmatrix}
+        F_0 \\  F_1 \\ F_2  \\  \vdots \\   F_{n-1}
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        1   &   1           &   1               &   \dots   &   1               \\
+        1   &   W_n         &   W_n^2           &   \dots   &   W_n^n           \\
+        1   &   W_n^2       &   W_n^4           &   \dots   &   W_n^{2n}        \\
+        \vdots & \vdots     &   \vdots          &   \ddots  &   \vdots          \\
+        1   &   W_n^{n-1}   &   W_n^{2(n-1)}    &   \dots   &   W_n^{(n-1)^2}   \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        f_0 \\  f_1 \\ f_2  \\  \vdots \\   f_{n-1}
+    \end{bmatrix}
+    \label{equ:DFT_matrix}
+\end{equation}
+where $W_n = e^{-\frac{2\pi\mathrm{i}}{n}}$.
+
+
+\subsection{The Fast Fourier Transform (FFT)}
+To compute all of the Fourier coefficients is quite expensive. 
+The time complexity for computing such matrix multiplication is $\mathcal{O}(n^2)$. 
+The algorithm FFT reduces the cost significantly, improves the time complexity to $\mathcal{O}(n\log n)$. 
+
+The derivation of FFT starts off at finding any $n$ points on a polynomial with a degree of $n-1$, 
+because given any $n$ points, we can find the coefficients of a polynomial with a degree of $n-1$.
+$$ P(x) = p_0 + p_1x + p_2x^2 + \dots + p_nx^n $$
+Separate the polynomial into odd and even parts:
+$$ P(x) = P_e(x^2) + xP_o(x^2) $$
+where $P_e(x) = p_0 + p_2x + p_4x^2 + \dots $, and $P_o(x) = p_1 + p_3x + p_5x^2 + \dots $. 
+
+We can utilize the property that odd functions satisfies $f_o(-x)=-f_o(x)$, 
+and even functions satisfies $f_e(-x)=f_e(x)$ to reduce the amount of calculation needed by a half. 
+$P_e(x^2)$ and $P_o(x^2)$ have a line of symmetrical at $x=0$, 
+which means that if we know $P_e(x_i^2)$ and $P_o(x_i^2)$, we also know the value of $P_o((-x_i)^2)$ 
+and $P_e((-x_i)^2)$ without doing any calculations. By carefully selecting the points to be positive-negative pairs, 
+we successfully reduced the amount of calculation by a half. In comparison, values of $P(x)$ have to be evaluated at 
+$x=\pm x_1,\pm x_2,\pm x_3,\dots,\pm x_n$ without applying this method. But now, we only have to evaluate values of 
+$P_o(x)$ and $P_e(x)$ at $x=x_1^2,x_2^2,x_3^2,\dots,x_{\frac{n}{2}}^2$.
+$$\begin{cases}
+    P(x_i) = P_e(x_i^2) + x_iP_o(x_i^2)    \\
+    P(-x_i) = P_e(x_i^2) - x_iP_o(x_i^2)
+\end{cases}$$
+
+We can continue to apply this method to continue reduce the amount of calculations required. 
+Noticed that $P_o(x)$ and $P_e(x)$ are also a polynomial function of their own, 
+which means that we can recursively apply this method to further reduce the work. 
+
+Here comes the problem, numbers $[x_1^2,x_2^2,x_3^2,\dots,x_{\frac{n}{2}}^2]$ have to be positive-negative pairs. 
+This could not be done without the use of imaginary numbers. If we let $\omega_n = e^{\frac{2\pi \mathrm{i}}{n}}$, 
+where $n$ is powers of $2$ for easier calculations.
+and choose the points as $x=\omega_n^0,\omega_n^1,\omega_n^2,\dots,\omega_n^{n-1}$, the problem would be solved. 
+The reason is that $\omega_n^{j+\frac{n}{2}} = -\omega_n^{j}$, which means that 
+$(\omega_n^{j},\omega_n^{j+\frac{n}{2}})$ are positive-negative pairs. 
+
+The problem is now simplified. The essential part of FFT is to choose the points to be positive-negative pairs to 
+take advantage of the symmetrical properties. The problem that we solved now is to quickly calculate the values of 
+$P(\omega_n^i)$ in the matrix below. 
+$$
+\begin{bmatrix}
+    P(\omega_n^0) \\  P(\omega_n^1) \\ P(\omega_n^2)  \\  \vdots \\   P(\omega_n^{n-1})
+\end{bmatrix}
+=
+\begin{bmatrix}
+    1   &   1               &   1                   &   \dots   &   1                       \\
+    1   &   \omega_n        &   \omega_n^2          &   \dots   &   \omega_n^{n-1}          \\
+    1   &   \omega_n^2      &   \omega_n^4          &   \dots   &   \omega_n^{2(n-1)}       \\
+    \vdots & \vdots         &   \vdots              &   \ddots  &   \vdots                  \\
+    1   &   \omega_n^{n-1}  &   \omega_n^{2(n-1)}   &   \dots   &   \omega_n^{(n-1)^2}      \\
+\end{bmatrix}
+\begin{bmatrix}
+    p_0 \\  p_1 \\ p_2  \\  \vdots \\   p_{n-1}
+\end{bmatrix}
+$$
+where $\omega_n = e^{\frac{2\pi\mathrm{i}}{n}}$.
+
+There is a lot of similarities compared to the DFT, the only difference is that 
+the exponent of the values in the transformation matrix is positive in the above equation, while it is negative in 
+the forward DFT. The concept still applies.
+
+
+\subsubsection{Choice of n}
+Every time the FFT is recursively called, the inputs are squared. $P(x)$ becomes $P_e(x^2)+x^P_o(x^2)$. 
+Continue recusing, $P_e(x^2)\rightarrow P_{ee}(x^4)+x^2P_{eo}(x^4)$, 
+$P_{ee}(x^4)\rightarrow P_{eee}(x^8)+x^4P_{eeo}(x^8)$, 
+so on and so forth. The exponents of the inputs are increasing in powers of 2. For a polynomial of degree $n$, 
+then $n+1$ points needed to be calculated, and $\lceil\log_{2}(n)\rceil$ times of recursion has to take place. 
+This means that the input $x$ would be eventually raised to $x^{(2^{\lceil\log_{2}(n)\rceil})}$. 
+Sub in $x=e^{\frac{2\pi\mathrm{i}}{n}}$, 
+the exponential part cancels out very nicely if $n=2^{\lceil\log_{2}(n)\rceil}$, or by other words, 
+it would be much easier to deal with if $n$ is powers of 2. 
+At the end of the recursion, all we have to calculate is $P_{\dots}(1)$ instead of a complex number as the input.
+
+If $P(x)$ is spitted into 3 terms instead of 2, then with a similar process, we can derive that it would work best 
+if $n=3^{\lceil\log_{3}(n)\rceil}$. 
+
