@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="Introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="personalized-notes/personalized-notes.html"><strong aria-hidden="true">1.</strong> Personalized Notes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="personalized-notes/fourier-transform/fourier-transform.html"><strong aria-hidden="true">1.1.</strong> Fourier Transform</a></li><li class="chapter-item expanded "><a href="personalized-notes/stat/statistics.html"><strong aria-hidden="true">1.2.</strong> Statistics</a></li></ol></li><li class="chapter-item expanded "><a href="http-proxy/http-proxy.html"><strong aria-hidden="true">2.</strong> HTTP Proxy</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="http-proxy/principles.html"><strong aria-hidden="true">2.1.</strong> Principles</a></li><li class="chapter-item expanded "><a href="http-proxy/implementation.html"><strong aria-hidden="true">2.2.</strong> Implmentation</a></li><li class="chapter-item expanded "><a href="http-proxy/issues.html"><strong aria-hidden="true">2.3.</strong> Issues</a></li></ol></li><li class="chapter-item expanded "><a href="wifi-controlled-robot/wifi-controlled-robot.html"><strong aria-hidden="true">3.</strong> WiFi Controlled Robot</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="wifi-controlled-robot/engineering-log.html"><strong aria-hidden="true">3.1.</strong> Engineering Log</a></li><li class="chapter-item expanded "><a href="wifi-controlled-robot/issues.html"><strong aria-hidden="true">3.2.</strong> Issues</a></li></ol></li><li class="chapter-item expanded "><a href="tls/tls.html"><strong aria-hidden="true">4.</strong> TLS</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tls/stage1.html"><strong aria-hidden="true">4.1.</strong> Stage 1</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="Introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="personalized-notes/personalized-notes.html"><strong aria-hidden="true">1.</strong> Personalized Notes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="personalized-notes/fourier-transform/fourier-transform.html"><strong aria-hidden="true">1.1.</strong> Fourier Transform</a></li><li class="chapter-item expanded "><a href="personalized-notes/stat/statistics.html"><strong aria-hidden="true">1.2.</strong> Statistics</a></li></ol></li><li class="chapter-item expanded "><a href="http-proxy/http-proxy.html"><strong aria-hidden="true">2.</strong> HTTP Proxy</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="http-proxy/principles.html"><strong aria-hidden="true">2.1.</strong> Principles</a></li><li class="chapter-item expanded "><a href="http-proxy/implementation.html"><strong aria-hidden="true">2.2.</strong> Implmentation</a></li><li class="chapter-item expanded "><a href="http-proxy/issues.html"><strong aria-hidden="true">2.3.</strong> Issues</a></li></ol></li><li class="chapter-item expanded "><a href="wifi-controlled-robot/wifi-controlled-robot.html"><strong aria-hidden="true">3.</strong> WiFi Controlled Robot</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="wifi-controlled-robot/engineering-log.html"><strong aria-hidden="true">3.1.</strong> Engineering Log</a></li><li class="chapter-item expanded "><a href="wifi-controlled-robot/issues.html"><strong aria-hidden="true">3.2.</strong> Issues</a></li></ol></li><li class="chapter-item expanded "><a href="racketx.html"><strong aria-hidden="true">4.</strong> racketx</a></li><li class="chapter-item expanded "><a href="tls/tls.html"><strong aria-hidden="true">5.</strong> TLS</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tls/stage1.html"><strong aria-hidden="true">5.1.</strong> Stage 1</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -534,6 +534,46 @@ The outcome of each trial is either 5, 6 or other, so the probability is:
 <hr />
 <p>There were issues with cross platform compatibility, the Win32 API is different from the API for UNIX like operating systems, and code had to be re-written for the same functionaility on a different operating system.</p>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="racketx"><a class="header" href="#racketx">racketx</a></h1>
+<hr />
+<p>Link to repository: <a href="https://github.com/jianxun-p/racketx">https://github.com/jianxun-p/racketx</a></p>
+<h3 id="brief-1"><a class="header" href="#brief-1">Brief</a></h3>
+<p>This project is a meant for learning purpose. After taking the course CS135, which I learned Racket, I was inspired by the concepts of functional programming and the essentials of Racket, so I started this project that allows me to write Racket code in Rust. </p>
+<h3 id="macros"><a class="header" href="#macros">Macros</a></h3>
+<p>Macros and metaprogramming are considered one of the significant part of the Rust programming language, it avoids many repetition of code and embeds Domain Specific Languages. I started off with using <code>macro_rules</code>, which provided extensive pattern matching capabilities, but it was not enough for this complicated task. As a solution, I turned towards using <code>proc_macro</code>. It was very powerful, yet, it consumes supprisingly more time to compile. </p>
+<h3 id="example-2"><a class="header" href="#example-2">Example</a></h3>
+<p>Here is an example of using the <code>racket</code> macro.</p>
+<pre><pre class="playground"><code class="language-rust">extern crate racketx;
+use racketx::racket;
+pub fn main() {
+    racket!{
+        (define add_2_num (lambda (x y) (+ x y)))
+        (define result (add_2_num 239 (- 9)))
+    };
+    assert_eq!(result, 230);
+}</code></pre></pre>
+<h3 id="features"><a class="header" href="#features">Features</a></h3>
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+definition of constants</li>
+<li><input disabled="" type="checkbox" checked=""/>
+lambda</li>
+<li><input disabled="" type="checkbox" checked=""/>
+integer operations (+, -, *, /)</li>
+<li><input disabled="" type="checkbox"/>
+negative integer (alternate solution: express with subtraction, e.g. <code>-8</code> would be <code>(- 8)</code>)</li>
+<li><input disabled="" type="checkbox"/>
+non-integer</li>
+<li><input disabled="" type="checkbox"/>
+conditional statements</li>
+<li><input disabled="" type="checkbox"/>
+lists</li>
+<li><input disabled="" type="checkbox"/>
+function definitions (alternate solution: use constants definition with lambda)</li>
+<li><input disabled="" type="checkbox"/>
+modulo arithmetic</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="tls"><a class="header" href="#tls">TLS</a></h1>
 <h2 id="introduction-1"><a class="header" href="#introduction-1">Introduction</a></h2>
 <hr />
@@ -550,7 +590,7 @@ The outcome of each trial is either 5, 6 or other, so the probability is:
 <li><a href="tls/stage1.html#tls-version-13">TLS version 1.3</a></li>
 <li><a href="tls/stage1.html#references">References</a></li>
 </ul>
-<h2 id="brief-1"><a class="header" href="#brief-1">Brief</a></h2>
+<h2 id="brief-2"><a class="header" href="#brief-2">Brief</a></h2>
 <hr />
 <p>At stage 1, this project implemented the server end of TLS1.2 with C++20. However, the build up of shit code made it nearly impossible to continue after successfully establishing the first TLS connection and deciphering the very first application data. As a result, the project was re-started.</p>
 <h2 id="tls-version-12"><a class="header" href="#tls-version-12">TLS version 1.2</a></h2>
@@ -559,7 +599,7 @@ The outcome of each trial is either 5, 6 or other, so the probability is:
 <p>The server will respond with a <code>Server Hello</code> message, it also contains 32 random bytes and session ID, but it would choose one cipher suite and the required public crytographic parameters. The server would also send a <code>Certificate</code> signed by a CA to the client. The certificate contains a public key for the clients to encrypt a pre-master secret. Only the server is capable of decrypting the pre-master secret due to the properties of asymetric encryption, and the certificate is signed with the private key of the CA, which nobody acknowledges, so by using the public key of the CA, held by the operating systems, it is sufficient to assure that the public key contained inside the certificate has not been modified by any attackers in the network. On top of that, since only the server has the private key, nobody else except the client and the server knows the pre-master secret. </p>
 <p>The pre-master secret itself is not long enough to be directly used as session keys, and to avoid bad implementation of TLS that use the same pre-master secret repeatedly, the pre-master secret with be extended to obtain the master secret using the random bytes sent. If the extended-master secret extension was specified in the client hello and server hello messages, all handshake message would also be included to add an additional level of security. </p>
 <p>After key negotiation, both the server and client will send a <code>Change Cipher Spec</code> handshake message to indicate that all messages beyond would be encrypted with the session key. At the end of the handshake, it is required to send a hash of all messages encrypted with the new session key to ensure that the handshake messages are not modified by attackers and to ensure that there are no errors in key calculation of both sides. </p>
-<h2 id="features"><a class="header" href="#features">Features</a></h2>
+<h2 id="features-1"><a class="header" href="#features-1">Features</a></h2>
 <hr />
 <p>There is limited amount of features and support, and the cipher suites supported are not the most secure; in fact, it only supports RSA key exchange and AES in GCM mode for stream cipher using SHA2 as the hashing algorithm. </p>
 <h2 id="learn"><a class="header" href="#learn">Learn</a></h2>
