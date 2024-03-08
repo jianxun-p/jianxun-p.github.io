@@ -1,0 +1,41 @@
+\section{Laplace Transform}
+The Fourier transform only works with functions that do not diverge to infinity as the inputs approach infinity. 
+Which means that it does not work with functions such as exponential or polynomials. The Laplace Transform is a 
+generalized transformation of the Fourier transform. It can transform functions that increase as rapidly as 
+exponential functions, and functions that grow slower. It expanded the set of functions that the transformation 
+can be applied. However, it does not included functions that increase faster than exponential functions, such as the 
+Gamma function, or double exponential functions ($f(x)=a^{(b^x)}$), etc... Another limitation to the use of the 
+Laplace transform is that the function is defined for only positive values of input ($t\geq 0$). 
+
+\indent Let's say the function, $f(t)$, that we wanted to transform is bounded by $e^{bt}$, 
+where $a$ is a positive constant. We can multiply this function by a term 
+which decays faster than $e^{bt}$. That term can be $e^{-at}$, where $b\geq a$. 
+$$ g(t) = f(t)e^{-at} $$
+We now have a function that converges as time approaches infinity.
+If time is negative, it does not converges, but we do not need to consider negative 
+values of time in most cases. We can apply Fourier transform to this new function. 
+Let $s=a+\mathrm{i}\omega$: 
+
+$$\begin{aligned}
+    G(s) &= \int_{0}^{\infty} 
+                    f(t)e^{-at}e^{-\mathrm{i}\omega t} \mathrm{d}t  \\
+    &= \int_{0}^{\infty} f(t)e^{-st} \mathrm{d}t
+\end{aligned}$$
+
+Even though time has to be greater than 0, the frequency can still be negative. By substituting $s=a+\omega\mathrm{i}$, 
+the inverse transform is:
+$$\begin{aligned}
+    g(t) &= \frac{1}{2\pi} \int_{-\infty}^{\infty} 
+        G(s)e^{\mathrm{i}\omega t} \mathrm{d}\omega  \\
+    f(t) &= \frac{1}{2\pi} \int_{-\infty}^{\infty} 
+            G(s)e^{t(a+\mathrm{i}\omega)} \mathrm{d}\omega  \\
+    f(t) &= \frac{1}{2\pi\mathrm{i}} \int_{a-\infty}^{a+\infty} G(s)e^{st} \mathrm{d}s
+\end{aligned}$$
+
+Which can be written as:
+\begin{equation}\begin{cases}
+    \mathcal{L}\{f(t)\} = F(s) = \displaystyle\int_{0}^{\infty} f(t)e^{-st} \mathrm{d}t     \\
+    \mathcal{L}^{-1}\{F(s)\} = f(t) = \frac{1}{2\pi\mathrm{i}} \displaystyle\int_{a-\infty}^{a+\infty} F(s)e^{st} \mathrm{d}s
+\end{cases}
+\label{equ:laplace_transfrom}
+\end{equation}

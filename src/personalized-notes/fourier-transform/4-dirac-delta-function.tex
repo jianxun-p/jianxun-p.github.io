@@ -1,0 +1,38 @@
+\section{Dirac Delta Function}
+Since the function constructed only with the analytical discrete data only has definitions on some points, 
+we can use the Dirac Delta Function:
+\begin{align*}
+\delta(t) = \begin{cases}
+    +\infty     &\text{if $t = 0$,}    \\
+    0           &\text{if $t \neq 0$.}
+\end{cases}
+\end{align*}
+In addition, 
+
+$$\int_{-\infty}^{+\infty} \delta(t) \mathrm{d}t = 1$$
+
+Sampling of a signal occurs every time interval, while at times between two sampling occurs, 
+the sampling function of continuous time that we get is 0. 
+This means that the constructed sampling function has a very similar property with impulse response functions.
+If we have to sample the continuous time function, $f(t)$, 
+we can get a sampling function of continuous time using the Dirac Delta Function (impulse response function), 
+$x[n]$ where $n$ is the time of the sampling occurs:
+$$ x[n]= f(t)\delta(t-n) $$
+
+Take samples repeatedly with a sampling time gap of $T_s$, we would get: 
+$$ x_p(t)= \sum_{n=-\infty}^{+\infty} f(t)\delta(t-nT_s) $$
+
+For the function in frequency form, we have to derive a impulse frequency function. 
+We cannot simply use $F(\omega)\delta(\omega - \theta)$, because the frequency is symmetrical. 
+Consider the function $$ p(t) = \cos(\omega_0t) $$ Then after Fourier transform 
+$$ \mathcal{F}\{p(t)\} = P(\omega) = \pi\delta(\omega-\omega_0) + \pi\delta(\omega+\omega_0)$$
+
+We now have the impulse frequency function, $P(t)$
+$$ X_p(\omega) = \frac{1}{2\pi} \int_{-\infty}^{+\infty} F(\omega)P(\omega-\theta) \mathrm{d}\theta $$
+
+For any functions with discrete frequencies, they must be periodic. 
+Because the frequency approaches zero for non-periodic functions, 
+and we could not approach zero with discrete numbers.
+
+
+
