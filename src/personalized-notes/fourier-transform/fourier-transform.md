@@ -3,7 +3,7 @@
 
 ## Brief
 ---
-This is a personal notes on the fourier series, the fourier transform and the laplace transform. The notes are written in LaTeX with the intension to learn to use LaTeX. The document's formation began on August 19, 2022. 
+This is a personal note on the Fourier series, the Fourier transform and the Laplace transform. The notes are written in LaTeX with the intention to learn to use LaTeX. The document's formation began on August 19, 2022. 
 
 
 ## Compiled Notes
