@@ -40,4 +40,4 @@ There are neither function tests nor unit tests. All tests performed were done b
 
 ## Compatibility
 ---
-There were issues with cross platform compatibility, the Win32 API is different from the API for UNIX like operating systems, and code had to be re-written for the same functionaility on a different operating system.
+There were issues with cross-platform compatibility, the Win32 API is different from the API for UNIX like operating systems, and code had to be re-written for the same functionality on a different operating system.

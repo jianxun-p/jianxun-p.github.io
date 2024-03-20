@@ -8,7 +8,7 @@ This project is a meant for learning purpose. After taking the course CS135, whi
 
 
 ### Macros
-Macros and metaprogramming are considered one of the significant part of the Rust programming language, it avoids many repetition of code and embeds Domain Specific Languages. I started off with using `macro_rules`, which provided extensive pattern matching capabilities, but it was not enough for this complicated task. As a solution, I turned towards using `proc_macro`. It was very powerful, yet, it consumes supprisingly more time to compile. 
+Macros and meta programming are considered one of the significant part of the Rust programming language, it avoids many repetitions of code and embeds Domain Specific Languages. I started off with using `macro_rules`, which provided extensive pattern matching capabilities, but it was not enough for this complicated task. As a solution, I turned towards using `proc_macro`. It was very powerful, yet, it consumes surprisingly more time to compile. 
 
 ### Example
 Here is an example of using the `racket` macro.
