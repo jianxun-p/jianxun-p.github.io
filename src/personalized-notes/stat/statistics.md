@@ -185,5 +185,5 @@ $$f_{Y|X_1,X_2}(y) = \frac{
 , where $\mu=\frac{x_1\sigma_2^2+x_2\sigma_1^2}{\sigma_1^2+\sigma_2^2}$ and
 $\sigma^2=\frac{\sigma_1^2\sigma_2^2}{\sigma_1^2+\sigma_2^2}$.
 
-For the special case $a=-\infin$ and $b=\infin$,
+For the special case $a\rightarrow-\infin$ and $b\rightarrow\infin$,
 $f_{Y|X_1,X_2}(y)=\phi(y;\mu,\sigma^2)$.
