@@ -12,6 +12,8 @@
   - [Binomial and Multinomial Distribution](#binomial-and-multinomial-distribution)
   - [Poisson Distribution](#poisson-distribution)
   - [Product of Two Normal PDFs](#product-of-two-normal-pdfs)
+- [Filters](#filters)
+  - [Bayes Filter](#bayes-filter)
 
 ## Combination, Permutation and Ordering
 
@@ -143,3 +145,45 @@ $$\phi\left(\mu_1;\mu_2,\sigma_1^2+\sigma_2^2\right) \
     \mu_3, \
     \frac{\sigma_1^2\sigma_2^2+\sigma_1^2\sigma_3^2+\sigma_2^2\sigma_3^2}{\sigma_1^2+\sigma_2^2}\right)$$
 .
+
+## Filters
+
+---
+
+Consider altitude sensors on a rocket, their measurements often
+comes with some error in repsect to the real altitude.
+Assume that the error is normally distributed centered at 0,
+and the actual altitude of the rocket is uniformlly distributed $Y\sim U(a,b)$ for some values $a$ and $b$.
+
+Let $X_i\sim N(y,\sigma_i)$ be independent random variables for the predicted and measured values of the current altitude. For simplicity, only consider the bivariate case with $X_1$ and $X_2$.
+
+The purpose of sample filters are to filter out the error in measured and predicted value to give an best estimation of the actual value, in other words, find $f_{Y|X_1,X_2}(y)$.
+
+### Bayes Filter
+
+By Bayes Theorem,
+$$f_{Y|X_1,X_2}(y) = \frac{f_{X_1,X_2|Y}(x_1,x_2)f_Y(y)}{f_{X_1,X_2}(x_1,x_2)} \
+= \frac{f_{Y,X_1,X_2}(y,x_1,x_2)}{f_{X_1,X_2}(x_1,x_2)}$$
+, and $f_Y(y)=\frac{1}{b-a}$.
+
+The denominator is an integral,
+$$f_{X_1,X_2}(x_1,x_2)=\int_a^b f_{Y,X_1,X_2}(y,x_1,x_2)dy=\int_a^b f_{X_1,X_2|Y}(x_1,x_2)f_Y(y)dy$$
+. However, since $f_Y(y)$ is independent from $y$, then
+$$f_{Y|X_1,X_2}(y)=\frac{f_{X_1,X_2|Y}(x_1,x_2)}{\int_a^b f_{X_1,X_2|Y}(x_1,x_2)dy}$$
+
+Since $X_1$ and $X_2$ are independent, then 
+$$f_{X_1,X_2|Y}(x_1,x_2)=f_{X_1|Y}(x_1)f_{X_2|Y}(x_2)=\phi(x_1;y,\sigma_1^2)\phi(x_2;y,\sigma_2^2)$$
+. By the results from the [Product of Two Normal PDFs](#product-of-two-normal-pdfs),
+$$f_{X_1,X_2|Y}(x_1,x_2)=
+\phi\left(x_1;x_2,\sigma_1^2+\sigma_2^2\right)\phi\left(y;\frac{x_1\sigma_2^2+x_2\sigma_1^2}{\sigma_1^2+\sigma_2^2},\frac{\sigma_1^2\sigma_2^2}{\sigma_1^2+\sigma_2^2}\right)$$
+. Therefore,
+$$f_{Y|X_1,X_2}(y) = \frac{
+        \phi(y;\mu,\sigma^2)
+    }{
+        \Phi\left(\frac{a-\mu}{\sigma}\leq z < \frac{b-\mu}{\sigma}\right)
+    }$$
+, where $\mu=\frac{x_1\sigma_2^2+x_2\sigma_1^2}{\sigma_1^2+\sigma_2^2}$ and
+$\sigma^2=\frac{\sigma_1^2\sigma_2^2}{\sigma_1^2+\sigma_2^2}$.
+
+For the special case $a=-\infin$ and $b=\infin$,
+$f_{Y|X_1,X_2}(y)=\phi(y;\mu,\sigma^2)$.
