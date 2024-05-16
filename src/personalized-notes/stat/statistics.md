@@ -11,6 +11,7 @@
 - [Probability Distributions](#probability-distributions)
   - [Binomial and Multinomial Distribution](#binomial-and-multinomial-distribution)
   - [Poisson Distribution](#poisson-distribution)
+  - [Product of Two Normal PDFs](#product-of-two-normal-pdfs)
 
 ## Combination, Permutation and Ordering
 
@@ -81,3 +82,64 @@ This is a different interpretation of the *[binomial distribution](#binomial-and
 If $k=\lambda (b-a)$ occurances are expected in the interval $I=[a,b]$, then the probability of $x$ occurances actually takes place is $P(X=x)=\lim_{n\rightarrow\infin}\binom{n}{x}(\frac{k}{n})^x(\frac{n-k}{n})^{n-x} = \frac{\lambda^x e^{-\lambda}}{x!}$.
 
 Due to their similarity, the poisson distribution can be approximated with the binomial distribution when $n$ is large.
+
+### Product of Two Normal PDFs
+
+#### Notation
+
+- $f_{X_i}(x_i)=\phi(x_i;\mu_i,\sigma_i^2)$ represents the PDF with $X_i\sim N(\mu_i, \sigma_i^2)$, and
+- $\Phi$ represent the CDF of the standard normal distribution
+
+#### Derivation
+
+Consider $X_1\sim N(\mu_1, \sigma_1^2)$ and $X_2\sim N(\mu_2, \sigma_2^2)$ independently, and try to find $f_{X_1}(x)f_{X_2}(x)$.
+
+$$ f_{X_1}(x)f_{X_2}(x) = \frac{1}{2\pi\sigma_1\sigma_2} \
+    e^{-\frac{1}{2}\left[  \
+        \frac{(x-\mu_1)^2}{\sigma_1^2} + \
+        \frac{(x-\mu_2)^2}{\sigma_2^2} \right]}  $$
+
+Consider the exponent part and by completing the squares,
+
+$$ \frac{(x-\mu_1)^2}{\sigma_1^2} + \
+    \frac{(x-\mu_2)^2}{\sigma_2^2} = \
+    \frac{1}{\sigma_1^2\sigma_2^2} \
+    \left[(\sigma_1^2+\sigma_2^2)x^2 \
+            - 2(\mu_1\sigma_2^2+\mu_2\sigma_1^2)x \
+            + (\mu_1^2\sigma_2^2+\mu_2^2\sigma_1^2) \
+    \right] $$
+$$= \frac{1}{\sigma_1^2\sigma_2^2} \
+    \left[x\sqrt{\sigma_1^2+\sigma_2^2} - \
+        \frac{\mu_1\sigma_2^2+\mu_2\sigma_1^2}{\sqrt{\sigma_1^2+\sigma_2^2}} \
+    \right]^2 + \frac{1}{\sigma_1^2\sigma_2^2} \left[ \
+        \mu_1^2\sigma_2^2+\mu_2^2\sigma_1^2 - \
+        \frac{(\mu_1\sigma_2^2+\mu_2\sigma_1^2)^2}{\sigma_1^2+\sigma_2^2} \
+    \right] $$
+$$= \frac{\sigma_1^2+\sigma_2^2}{\sigma_1^2\sigma_2^2} \
+    \left[x - \
+        \frac{\mu_1\sigma_2^2+\mu_2\sigma_1^2}{\sigma_1^2+\sigma_2^2} \
+    \right]^2 + \frac{1}{\sigma_1^2\sigma_2^2(\sigma_1^2+\sigma_2^2)} \
+    \left[ \mu_1-\mu_2 \right]^2 $$
+
+So,
+
+$$f_{X_1}(x)f_{X_2}(x) = \phi\left(\mu_1;\mu_2,\sigma_1^2+\sigma_2^2\right)\phi\left(x;\frac{\mu_1\sigma_2^2+\mu_2\sigma_1^2}{\sigma_1^2+\sigma_2^2},\frac{\sigma_1^2\sigma_2^2}{\sigma_1^2+\sigma_2^2}\right) $$
+
+, which yields the result of a scaled normal pdf with $X\sim N\left(\frac{\mu_1\sigma_2^2+\mu_2\sigma_1^2}{\sigma_1^2+\sigma_2^2},\frac{\sigma_1^2\sigma_2^2}{\sigma_1^2+\sigma_2^2}\right)$.
+
+#### Product of Three Normal PDFs
+
+For the case of $f_{X_1}(x)f_{X_2}(x)f_{X_3}(x)$,
+by using the above results,
+we get the result of a scaled normal pdf with a mean of
+$$\frac{\frac{\mu_1\sigma_2^2+\mu_2\sigma_1^2}{\sigma_1^2+\sigma_2^2}\sigma_3^2+\mu_3\frac{\sigma_1^2\sigma_2^2}{\sigma_1^2+\sigma_2^2}}{\frac{\sigma_1^2\sigma_2^2}{\sigma_1^2+\sigma_2^2}+\sigma_3^2} \
+= \frac{\mu_1\sigma_2^2\sigma_3^2+\mu_2\sigma_1^2\sigma_3^2+\mu_3\sigma_1^2\sigma_2^2}{\sigma_1^2\sigma_2^2+\sigma_1^2\sigma_3^2+\sigma_2^2\sigma_3^2}$$
+, a variance of
+$$\frac{\frac{\sigma_1^2\sigma_2^2}{\sigma_1^2+\sigma_2^2}\sigma_3^2}{\frac{\sigma_1^2\sigma_2^2}{\sigma_1^2+\sigma_2^2}+\sigma_3^2} \
+= \frac{\sigma_1^2\sigma_2^2\sigma_3^2}{\sigma_1^2\sigma_2^2+\sigma_1^2\sigma_3^2+\sigma_2^2\sigma_3^2}$$
+, and a scale factor of
+$$\phi\left(\mu_1;\mu_2,\sigma_1^2+\sigma_2^2\right) \
+\phi\left(\frac{\mu_1\sigma_2^2+\mu_2\sigma_1^2}{\sigma_1^2+\sigma_2^2}; \
+    \mu_3, \
+    \frac{\sigma_1^2\sigma_2^2+\sigma_1^2\sigma_3^2+\sigma_2^2\sigma_3^2}{\sigma_1^2+\sigma_2^2}\right)$$
+.
