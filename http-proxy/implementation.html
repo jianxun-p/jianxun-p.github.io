@@ -173,7 +173,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
 <h2 id="table-of-contents"><a class="header" href="#table-of-contents">Table of Contents</a></h2>
 <hr />
 <ol>
@@ -186,14 +186,14 @@
 <p>Running on macOS, this project is implemented using the language and version of C98 with the standard C library, r. The compiler used is <code>Apple clang version 15.0.0</code>.</p>
 <h2 id="client-connection"><a class="header" href="#client-connection">Client Connection</a></h2>
 <hr />
-<p>In the main function, a TCP listener would be created and binded to the given address. After initialization, the proxy server would accept incoming client connections using a while loop and call the handler function with the file descriptor of the TCP connection. </p>
-<p>For all clients, their initial request would be parsed to obtain the designated host and the proxy parameters, then this information would be removed from the request. This step is done by if-else statements with the <code>strstr</code> function provided by the standard C library. This is not the best approach for large scale application as it would result in lengthy code and poor readability; however, this proxy server only looks for a limited amount of parameters while leaving others untouched, this approach is a much simpler method to implement. </p>
-<p>The function would then create a TCP connection to the requested server parsed in the previous step. Immediately, the modified request would be sent to the designated server. </p>
-<p>After the initial request, a while loop would continuously attempt to read from both ends with blocking. If a message is received from either ends, then the message would be blindly forwarded to the other end. In the scenario where any of the connection is closed or broken, the proxy would close both connection and the handler function would return. </p>
+<p>In the main function, a TCP listener would be created and binded to the given address. After initialization, the proxy server would accept incoming client connections using a while loop and call the handler function with the file descriptor of the TCP connection.</p>
+<p>For all clients, their initial request would be parsed to obtain the designated host and the proxy parameters, then this information would be removed from the request. This step is done by if-else statements with the <code>strstr</code> function provided by the standard C library. This is not the best approach for large scale application as it would result in lengthy code and poor readability; however, this proxy server only looks for a limited amount of parameters while leaving others untouched, this approach is a much simpler method to implement.</p>
+<p>The function would then create a TCP connection to the requested server parsed in the previous step. Immediately, the modified request would be sent to the designated server.</p>
+<p>After the initial request, a while loop would continuously attempt to read from both ends with blocking. If a message is received from either ends, then the message would be blindly forwarded to the other end. In the scenario where any of the connection is closed or broken, the proxy would close both connection and the handler function would return.</p>
 <h2 id="concurrency"><a class="header" href="#concurrency">Concurrency</a></h2>
 <hr />
-<p>In the case when a connection is maintained for a while, the thread would be blocked to wait for incoming messages of the existing connection, thus, no new clients can be accepted, and only one client can be serviced at a time. </p>
-<p>To solve this problem, when TCP connection is accepted, a new thread would be created to run the handler function with the TCP file descriptor supplied. Each thread handles one client. </p>
+<p>In the case when a connection is maintained for a while, the thread would be blocked to wait for incoming messages of the existing connection, thus, no new clients can be accepted, and only one client can be serviced at a time.</p>
+<p>To solve this problem, when TCP connection is accepted, a new thread would be created to run the handler function with the TCP file descriptor supplied. Each thread handles one client.</p>
 
                     </main>
 

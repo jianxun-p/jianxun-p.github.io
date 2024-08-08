@@ -173,7 +173,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
 <h2 id="table-of-contents"><a class="header" href="#table-of-contents">Table of Contents</a></h2>
 <hr />
 <ol>
@@ -193,9 +193,9 @@
 <h2 id="log-1---december-15th-2021"><a class="header" href="#log-1---december-15th-2021">Log #1 - December 15th, 2021 <a name="log1"></a></a></h2>
 <hr />
 <h3 id="what-was-done"><a class="header" href="#what-was-done">What was done</a></h3>
-<p>I downloaded and installed the libraries for the ESP8266, then I tested it with a simple LED blinking code. </p>
+<p>I downloaded and installed the libraries for the ESP8266, then I tested it with a simple LED blinking code.</p>
 <h3 id="brainstormreflection"><a class="header" href="#brainstormreflection">Brainstorm/Reflection</a></h3>
-<p>The importance of device drivers are crucial. They are responsible for the communication between the operating system and the devices. It is impossible to use the full abilities of the devices without the help of the drivers. The basic drivers that UEFI loads during the DXE stage can help operating system to utilize most devices, but certainly not all, and definitely don’t push the devices to their full capabilities. </p>
+<p>The importance of device drivers are crucial. They are responsible for the communication between the operating system and the devices. It is impossible to use the full abilities of the devices without the help of the drivers. The basic drivers that UEFI loads during the DXE stage can help operating system to utilize most devices, but certainly not all, and definitely don’t push the devices to their full capabilities.</p>
 <p>It is important to look at the specifications of the products when purchasing a cable, because some only have two wires inside for power delivery and no wires for data transmission.</p>
 <h3 id="issues-and-fixes"><a class="header" href="#issues-and-fixes">Issues and Fixes</a></h3>
 <p>The Arduino IDE was not able to detect the USB port connecting to the ESP8266. So I searched for the driver online and installed it. It still didn’t work. I looked for clues on the internet, and an article suggests that it might be the cable that I was using was a power delivering cable, which is not able to transmit data. So I replaced that cable with another one. The Arduino IDE was able to detect the port and upload the code.</p>
@@ -204,7 +204,7 @@
 <h2 id="log-2---december-16th-2021"><a class="header" href="#log-2---december-16th-2021">Log #2 - December 16th, 2021 <a name="log2"></a></a></h2>
 <hr />
 <h3 id="what-was-done-1"><a class="header" href="#what-was-done-1">What was done</a></h3>
-<p>I researched about Wi-Fi connections on ESP8266, looked at documentation of the ESP8266 from the official website of the manufacturer, and also found an Arduino library (ESP8266Wi-Fi) online. I wrote some code to connect it to my own Wi-Fi. It scans all the nearby available SSIDs and their signal strength. </p>
+<p>I researched about Wi-Fi connections on ESP8266, looked at documentation of the ESP8266 from the official website of the manufacturer, and also found an Arduino library (ESP8266Wi-Fi) online. I wrote some code to connect it to my own Wi-Fi. It scans all the nearby available SSIDs and their signal strength.</p>
 <h3 id="brainstormreflection-1"><a class="header" href="#brainstormreflection-1">Brainstorm/Reflection</a></h3>
 <p>Using Wi-Fi in this robot is a better choice than Bluetooth and wired-controlled. This conclusion stands because of multiple reasons. Firstly, Wi-Fi can provide faster communication between the robot and the controller, which allows more control of advanced sensors and rescue equipment that requires bandwidth. Secondly, using Wi-Fi allows the controller to control multiple robots at the same time which Bluetooth does not allow. Thirdly, the ability to connect to Wi-Fi means that the robot can be connected into the internet, which allows distant controls of the robots, unlike Bluetooth which would have a significant latency to convert the Bluetooth data. Even Though wired robots also have the advantages listed above, the data transmission wires of wired robots might tangle up, which has no benefits in a rescue. On the other hand, Bluetooth’s low power consumption is one of its advantages, but the rescue robot is big enough to fit a battery inside. In addition, the ESP8266 can turn off the antenna (the different sleep modes) to save battery.</p>
 <h3 id="issues-and-fixes-1"><a class="header" href="#issues-and-fixes-1">Issues and Fixes</a></h3>
@@ -214,7 +214,7 @@
 <h2 id="log-3---december-17th-2021"><a class="header" href="#log-3---december-17th-2021">Log #3 - December 17th, 2021 <a name="log3"></a></a></h2>
 <hr />
 <h3 id="what-was-done-2"><a class="header" href="#what-was-done-2">What was done</a></h3>
-<p>I researched about creating a TCP connection using the ESP8266Wi-Fi library, and wrote some code for the arduino to establish a TCP connection. I wrote some C code on my computer to establish a TCP connection with the robot using sockets. </p>
+<p>I researched about creating a TCP connection using the ESP8266Wi-Fi library, and wrote some code for the arduino to establish a TCP connection. I wrote some C code on my computer to establish a TCP connection with the robot using sockets.</p>
 <h3 id="brainstormreflection-2"><a class="header" href="#brainstormreflection-2">Brainstorm/Reflection</a></h3>
 <p>The reason that I chose TCP instead of UDP connection is that I need the commands and data to be transferred in order, and ensure that my commands from the controller (computer) are received by the robot. This is a great advantage in rescue, because oftentimes, the robot is not in sight of the controller, which means that the controller would have a difficult time figuring out which commands are executed or not.</p>
 <p>If I am able (if I have time) to put a camera on the robot, I would use a UDP connection for the video data instead. The reasoning behind this is that it is more about speed and latency than the smoothness of the images when it comes to live video connections. If a frame is lost during transmission, simply ignore it. Rescue teams need the newest images instead of the old ones.</p>
@@ -225,43 +225,43 @@
 <h2 id="log-4---december-31th-2021"><a class="header" href="#log-4---december-31th-2021">Log #4 - December 31th, 2021 <a name="log4"></a></a></h2>
 <hr />
 <h3 id="what-was-done-3"><a class="header" href="#what-was-done-3">What was done</a></h3>
-<p>I configured my VS Code for Arduino. I wrote a lot of code for the communication between the controller and the robot. I tested the communication and execution of commands. Then, I had made huge amounts of changes to the code for better communication supporting commands, messages, data etc… </p>
-<p>During the winter break, Henry had typed out the documentation for the summative assignment. In the six hundred words documentation, he briefly mentioned the history of the technology, current and future applications and technology, as well as the possible improvements. </p>
+<p>I configured my VS Code for Arduino. I wrote a lot of code for the communication between the controller and the robot. I tested the communication and execution of commands. Then, I had made huge amounts of changes to the code for better communication supporting commands, messages, data etc…</p>
+<p>During the winter break, Henry had typed out the documentation for the summative assignment. In the six hundred words documentation, he briefly mentioned the history of the technology, current and future applications and technology, as well as the possible improvements.</p>
 <h3 id="brainstormreflection-3"><a class="header" href="#brainstormreflection-3">Brainstorm/Reflection</a></h3>
-<p>The choice of IDE is important in a project, especially in a large project. The coder (me) had to spend most of my time with the IDE to code. An efficient IDE would save a lot of time and energy. The Arduino IDE had a very limited amount of functionalities compared to VS Code. I found it annoying scrolling through the code that I didn’t want to look at. However, with VS Code, it shows the declarations when the mouse hovers over it and jumps to the line of code I wanted to see with a single click. </p>
+<p>The choice of IDE is important in a project, especially in a large project. The coder (me) had to spend most of my time with the IDE to code. An efficient IDE would save a lot of time and energy. The Arduino IDE had a very limited amount of functionalities compared to VS Code. I found it annoying scrolling through the code that I didn’t want to look at. However, with VS Code, it shows the declarations when the mouse hovers over it and jumps to the line of code I wanted to see with a single click.</p>
 <h3 id="issues-and-fixes-3"><a class="header" href="#issues-and-fixes-3">Issues and Fixes</a></h3>
-<p>It was not able to send messages and data. To solve this problem, the controller has to send an extra byte stating the type (command, message or data) of the data before sending the actual data. </p>
+<p>It was not able to send messages and data. To solve this problem, the controller has to send an extra byte stating the type (command, message or data) of the data before sending the actual data.</p>
 <p>There was a problem with sending messages between the robot and the controller. When the robot or the controller receives a message, it doesn’t know the length of the message/data. To solve this problem, two extra bytes of data have to be sent before the actual data is being sent to tell the receiver the length of the message. So the receiver would not receive the next command or data that is not relevant to the data that the receiver is handling.</p>
 <h3 id="accomplishments-and-next-steps-3"><a class="header" href="#accomplishments-and-next-steps-3">Accomplishments and Next Steps</a></h3>
 <p>The robot is able to receive commands from the controller and execute them.</p>
 <h2 id="log-5---january-10th-2022"><a class="header" href="#log-5---january-10th-2022">Log #5 - January 10th, 2022 <a name="log5"></a></a></h2>
 <hr />
 <h2 id="what-was-done-4"><a class="header" href="#what-was-done-4">What was done</a></h2>
-<p>I added a lot of code to handle errors for the controller, including the return of status from the robot, and the error handling when setting up the controller. It is much easier to debug. </p>
+<p>I added a lot of code to handle errors for the controller, including the return of status from the robot, and the error handling when setting up the controller. It is much easier to debug.</p>
 <p><img src="media/testing_error_handling.png" alt="Testing the error handling functionality by trying to allocate a huge amount of memory" /></p>
 <h3 id="brainstormreflection-4"><a class="header" href="#brainstormreflection-4">Brainstorm/Reflection</a></h3>
 <p>Error handling is a big part of this rescue robot. If an error occurs during rescue, there is not much time for engineers to find out what happened and fix the problem. The robot has to tell the controller everything about its status.</p>
 <h3 id="issues-and-fixes-4"><a class="header" href="#issues-and-fixes-4">Issues and Fixes</a></h3>
 <p>There was a bug in the error handling code. I later found out that it was because a big bracket was missing in the code, but the indentation was correct. It took quite a while to find that bug.</p>
 <h3 id="accomplishments-and-next-steps-4"><a class="header" href="#accomplishments-and-next-steps-4">Accomplishments and Next Steps</a></h3>
-<p>It is able to handle errors. </p>
+<p>It is able to handle errors.</p>
 <h2 id="log-6---january-11th-2022"><a class="header" href="#log-6---january-11th-2022">Log #6 - January 11th, 2022 <a name="log6"></a></a></h2>
 <hr />
 <h3 id="what-was-done-5"><a class="header" href="#what-was-done-5">What was done</a></h3>
 <p>When I tried to work on the ESP8266, one of the diodes for supplying power was killed from high voltage (9 volts). I measured it with a multimeter. The voltage across the diode was low (around 1 volt). I try to remove the diode and replace it with a piece of copper wire, but it is too small to work with. Luckily, the ESP8266 can still run with battery, and I have done most of the coding for it.</p>
 <h3 id="brainstormreflection-5"><a class="header" href="#brainstormreflection-5">Brainstorm/Reflection</a></h3>
-<p>Voltage protection is one of the most important parts of modern day computers. It is there to protect circuits and electrical components from damage. I remember when I was little, computers were more fragile. There are many grounding and temperature protections. That was the only classroom with air conditioning. </p>
+<p>Voltage protection is one of the most important parts of modern day computers. It is there to protect circuits and electrical components from damage. I remember when I was little, computers were more fragile. There are many grounding and temperature protections. That was the only classroom with air conditioning.</p>
 <h3 id="issues-and-fixes-5"><a class="header" href="#issues-and-fixes-5">Issues and Fixes</a></h3>
-<p>One of the diodes on the ESP12e development kit was damaged. I was not able to fix it. </p>
+<p>One of the diodes on the ESP12e development kit was damaged. I was not able to fix it.</p>
 <h3 id="accomplishments-and-next-steps-5"><a class="header" href="#accomplishments-and-next-steps-5">Accomplishments and Next Steps</a></h3>
-<p>I killed one of the diodes. </p>
+<p>I killed one of the diodes.</p>
 <h2 id="log-7---january-12th-2022"><a class="header" href="#log-7---january-12th-2022">Log #7 - January 12th, 2022 <a name="log7"></a></a></h2>
 <hr />
 <h3 id="what-was-done-6"><a class="header" href="#what-was-done-6">What was done</a></h3>
 <p>I found out that my router was assigned with a public IP address, which allows me to connect to it from the internet with port forwarding. I looked up the public IP address and configured port forwarding on my modem. I asked Henry to request the IP address and the specific port on his browser. The ESP8266 was able to receive the requests, even though it cannot decode nor parse the requests.</p>
 <h3 id="brainstormreflection-6"><a class="header" href="#brainstormreflection-6">Brainstorm/Reflection</a></h3>
 <p>There is not enough IPv4 address for every device on Earth. Engineers came up with two solutions, one of them is IPv6, and the other is Network Address Translation (NAT). NAT is based on IPv4, not all devices are assigned with a public IP address. NAT translates the private IP address into a public IP address that is being shared with other devices. There are a lot of changes and time needed to transition to IPv6, but since NAT is based on IPv4, it takes less time and money to use NAT than IPv6.</p>
-<p>One of the drawbacks of NAT is that it doesn’t allow a device to access another device with a private IP address though the internet. Address translation happens at the modem, which I have access to. I can set up port forwarding on my modem, so when a device tries to access the specified port of the modem, the request would be forwarded to ESP8266. </p>
+<p>One of the drawbacks of NAT is that it doesn’t allow a device to access another device with a private IP address though the internet. Address translation happens at the modem, which I have access to. I can set up port forwarding on my modem, so when a device tries to access the specified port of the modem, the request would be forwarded to ESP8266.</p>
 <p>It is lucky to have NAT instead of a double NAT. In a double NAT situation, I have to set up port forwarding in routers where NAT happens, but I do not have access to all the routers. In that case, Henry would not be able to access my ESP8266.</p>
 <h3 id="issues-and-fixes-6"><a class="header" href="#issues-and-fixes-6">Issues and Fixes</a></h3>
 <p>No issues today.</p>
@@ -270,12 +270,12 @@
 <h2 id="log-8---january-13th-2022"><a class="header" href="#log-8---january-13th-2022">Log #8 - January 13th, 2022 <a name="log8"></a></a></h2>
 <hr />
 <h3 id="what-was-done-7"><a class="header" href="#what-was-done-7">What was done</a></h3>
-<p>I realized that I had made a big mistake in using the C language. I should have used other programming languages instead for cross-platform compatibility. So I read the documentation of Microsoft about creating sockets on Windows, and tried to write some code. </p>
+<p>I realized that I had made a big mistake in using the C language. I should have used other programming languages instead for cross-platform compatibility. So I read the documentation of Microsoft about creating sockets on Windows, and tried to write some code.</p>
 <p><img src="media/reading_windows_api.png" alt="Reading the Windows API" /></p>
 <h3 id="brainstormreflection-7"><a class="header" href="#brainstormreflection-7">Brainstorm/Reflection</a></h3>
-<p>Compatibility and portability are important. It saves a lot of time rewriting code just to run the same functionality on another computer. </p>
+<p>Compatibility and portability are important. It saves a lot of time rewriting code just to run the same functionality on another computer.</p>
 <h3 id="issues-and-fixes-7"><a class="header" href="#issues-and-fixes-7">Issues and Fixes</a></h3>
-<p>I wrote my code on macOS, which means that the code cannot compile on the Windows platform. I tried to learn about coding Windows programs and actually write some code for it. </p>
+<p>I wrote my code on macOS, which means that the code cannot compile on the Windows platform. I tried to learn about coding Windows programs and actually write some code for it.</p>
 <h3 id="accomplishments-and-next-steps-7"><a class="header" href="#accomplishments-and-next-steps-7">Accomplishments and Next Steps</a></h3>
 <p>Learned a bit about Windows.</p>
 <h2 id="log-9---january-14th-2022"><a class="header" href="#log-9---january-14th-2022">Log #9 - January 14th, 2022 <a name="log9"></a></a></h2>
@@ -283,9 +283,9 @@
 <h3 id="what-was-done-8"><a class="header" href="#what-was-done-8">What was done</a></h3>
 <p>I wrote more code for turning the motors using the motor driver on the ESP8266 development kit and tested it. It is able to go in a straight line. I also wrote code for the ultrasonic sensor.</p>
 <h3 id="brainstormreflection-8"><a class="header" href="#brainstormreflection-8">Brainstorm/Reflection</a></h3>
-<p>The reason that the robot was not able to move forward in a straight line is that the motors were spinning at different speeds, even though the PWM signals used to control the L293D chip were identical. There are many factors contributing to this issue. The major factor is the errors during manufacturing. The motors and wheels are not manufactured perfectly, resulting in this issue of the robot. </p>
+<p>The reason that the robot was not able to move forward in a straight line is that the motors were spinning at different speeds, even though the PWM signals used to control the L293D chip were identical. There are many factors contributing to this issue. The major factor is the errors during manufacturing. The motors and wheels are not manufactured perfectly, resulting in this issue of the robot.</p>
 <h3 id="issues-and-fixes-8"><a class="header" href="#issues-and-fixes-8">Issues and Fixes</a></h3>
-<p>The ultrasonic sensor kept returning weird values, later found out that it was because of a wrong value in the code. </p>
+<p>The ultrasonic sensor kept returning weird values, later found out that it was because of a wrong value in the code.</p>
 <h3 id="accomplishments-and-next-steps-8"><a class="header" href="#accomplishments-and-next-steps-8">Accomplishments and Next Steps</a></h3>
 <p>The robot is able to go in a straight line and detect distances with the ultrasonic sensor.</p>
 <h2 id="log-10---january-23rd-2022"><a class="header" href="#log-10---january-23rd-2022">Log #10 - January 23rd, 2022 <a name="log10"></a></a></h2>
