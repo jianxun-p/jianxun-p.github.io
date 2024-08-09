@@ -11,3 +11,12 @@ create-missing = false
 
 [preprocessor.katex]
 after = ["links"]
+
+[output.html]
+default-theme = "rust"
+git-repository-url = "https://github.com/jianxun-p/jianxun-p.github.io"
+git-repository-icon = "fa-github"
+
+[output.html.print]
+enable = true
+page-break = true
