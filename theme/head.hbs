@@ -5,18 +5,21 @@
     function gtag(){dataLayer.push(arguments);}
     const gtagStartDate = new Date();
     gtag('js', gtagStartDate);
-    gtag('config', 'G-F8Z6820M34');
     const reqHeaders = new Headers();
     reqHeaders.set('Accept', 'application/json');
-    let eventInfo = { };
     fetch('https://ipinfo.io/', { method: 'GET', headers: reqHeaders})
         .then(async res => {
             if (!res.ok) return;
-            eventInfo = await res.json();
+            const eventInfo = await res.json();
+            gtag('config', 'G-F8Z6820M34', eventInfo);
+        })
+        .then(() => {
+            setTimeout(() => { gtag('event', 'stayed_5_sec'); }, 5000);
+            setTimeout(() => { gtag('event', 'stayed_30_sec'); }, 30000);
+            setTimeout(() => { gtag('event', 'stayed_1_min'); }, 60000);
+            setTimeout(() => { gtag('event', 'stayed_5_min'); }, 5 * 60000);
+            window.addEventListener('beforeunload', () => { 
+                gtag('event', 'leave_page', { 'stayed': Date.now() - gtagStartDate.valueOf() });
+            });
         });
-    setTimeout(() => { gtag('event', 'stayed_5_sec', eventInfo); console.log('stayed_5_sec'); }, 5000);
-    setTimeout(() => { gtag('event', 'stayed_30_sec', eventInfo); console.log('stayed_30_sec'); }, 30000);
-    setTimeout(() => { gtag('event', 'stayed_1_min', eventInfo); console.log('stayed_1_min'); }, 60000);
-    setTimeout(() => { gtag('event', 'stayed_5_min', eventInfo); console.log('stayed_5_min'); }, 5 * 60000);
-    window.addEventListener('beforeunload', () => gtag('event', 'leave_page', { 'stayed': Date.now() - gtagStartDate.valueOf() }));
 </script>
