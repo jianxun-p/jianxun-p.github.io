@@ -6,7 +6,6 @@ description = "Personal blog."
 src = "src"
 
 [build]
-build-dir = "docs"
 create-missing = false
 
 [preprocessor.katex]
