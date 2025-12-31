@@ -5,6 +5,7 @@
 - [Brief](#brief)
 - [TLS version 1.2](#tls-version-12)
 - [Features](#features)
+- [Demonstration](#demostration)
 - [Issues](#issues)
 - [TLS version 1.3](#tls-version-13)
 - [References](#references)
@@ -35,8 +36,128 @@ There is limited amount of features and support, and the cipher suites supported
 - wireshark
 - openssl
 
-## Reflection
+## Demonstration
 ---
+It is able establish a TLS connection with the client (Google Chrome browser).
+
+- Clients initiate request (with TLS parameters)
+- Server sends the parameters with a self-signed certificate to the client (daimaoguai.com, I did not registered this domain)
+- Client encrypts pre-master secret with the public key and sends it back to server
+- Server and client both produces the same master secret and produces the key block from it
+- Sends Change Cipher Spec: all data after are encrypted
+- Sends Finish: ensures both parties produced the same keys
+- Server successfully decrypted the HTTP request.
+
+<video src="./tls-stage1-demo.mp4" controls></video>
+
+```txt
+*************************************
+compiled at: Dec 30 2025, 19:30:17
+start initiation
+read certificate[1378]
+setted signal handlers
+starting HTTPS server
+listening to port 443
+*************************************
+
+client hello[1774]
+server hello[53]
+server certificate[1388]
+server hello done[4]
+ALERT!
+client hello[1742]
+server hello[53]
+server certificate[1388]
+server hello done[4]
+ALERT!
+client hello[1806]
+server hello[53]
+server certificate[1388]
+server hello done[4]
+ALERT!
+client hello[1742]
+server hello[53]
+server certificate[1388]
+server hello done[4]
+client key exchange[514]
+client change cipher spec[1]
+client finished[12]
+server change cipher spec[6]
+server finished[16]
+TLS application data[709] at memory[0x0x7fca7500b09d]
+GET / HTTP/1.1
+Host: localhost
+Connection: keep-alive
+Cache-Control: max-age=0
+sec-ch-ua: "Google Chrome";v="141", "Not?A_Brand";v="8", "Chromium";v="141"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "macOS"
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: none
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: zh-CN,zh;q=0.9,en-CA;q=0.8,en;q=0.7
+
+�~�C
+    _(�I�FY�t�V��G��
+client hello[1774]
+server hello[53]
+server certificate[1388]
+server hello done[4]
+ALERT!
+client hello[1742]
+server hello[53]
+server certificate[1388]
+server hello done[4]
+ALERT!
+client hello[1774]
+server hello[53]
+server certificate[1388]
+server hello done[4]
+ALERT!
+client hello[1774]
+server hello[53]
+server certificate[1388]
+server hello done[4]
+client key exchange[514]
+client change cipher spec[1]
+client finished[12]
+server change cipher spec[6]
+server finished[16]
+TLS application data[709] at memory[0x0x7fca7480f0bd]
+GET / HTTP/1.1
+Host: localhost
+Connection: keep-alive
+Cache-Control: max-age=0
+sec-ch-ua: "Google Chrome";v="141", "Not?A_Brand";v="8", "Chromium";v="141"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "macOS"
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: none
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: zh-CN,zh;q=0.9,en-CA;q=0.8,en;q=0.7
+
+���"�Ҙ
+      ���ۮ�9f�
+^C
+
+*************************************
+Signal captured[2]
+Interrupt: 2
+Keyboard Interruption
+Terminating proccess...
+freed all clients
+successfully closed server end socket
+```
 
 
 ## Issues
