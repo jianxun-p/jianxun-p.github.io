@@ -62,7 +62,7 @@ Bottleneck: The step of reduction with a single thread of CPU can be optimized, 
 
 ## Secure Hash Algorithm 2 (SHA-2) & The Merkle–Damgard Construction
 
-The SHA-2 is based on the [https://en.wikipedia.org/wiki/Merkle%E2%80%93Damg%C3%A5rd_construction](Merkle–Damgard construction).
+The SHA-2 is based on the [Merkle–Damgard construction](https://en.wikipedia.org/wiki/Merkle%E2%80%93Damg%C3%A5rd_construction).
 
 The Merkle–Damgard construction consists of a compression function, $f$ (see function `sha2_compression`), which needed to be:
 
