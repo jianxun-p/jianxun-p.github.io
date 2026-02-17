@@ -19,3 +19,4 @@
 - [racketx](racketx.md)
 - [TLS](tls/tls.md)
     - [Stage 1](tls/stage1.md)
+- [GPU Accelerated SHA-2 Collision (oneAPI SYCL)](sha2-collision-with-oneapi.md)
